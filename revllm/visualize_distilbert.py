@@ -134,9 +134,9 @@ class VisualizeSentiment:
             yticklabels=yticklabels,
             linewidth=0.2,
         )
-        plt.xlabel('Tokens')
-        plt.ylabel('Layers')
-        plt.title('Token attribution scores for sentiment prediction')
+        plt.xlabel("Tokens")
+        plt.ylabel("Layers")
+        plt.title("Token attribution scores for sentiment prediction")
         plt.show()
 
     def lc_visualize_token_boxes(self, token_to_explain: str = None):
@@ -149,8 +149,8 @@ class VisualizeSentiment:
         fig, ax = plt.subplots(figsize=(20, 10))
         ax = sns.boxplot(data=self.layer_attrs_dist)  # Already renamed this in the previous step.
         plt.title(f"Attribution scores of {tokens_list[token_to_explain_index]} by layer")
-        plt.xlabel('Layers')
-        plt.ylabel('Attribution')
+        plt.xlabel("Layers")
+        plt.ylabel("Attribution")
         plt.show()
 
     def lc_visualize_token_pdfs(self, token_to_explain: str = None):
@@ -177,10 +177,10 @@ class VisualizeSentiment:
         fig, ax = plt.subplots(figsize=(20, 10))
         plt.plot(layer_attrs_pdf)
         plt.title(f"Probability density function of {tokens_list[token_to_explain_index]}")
-        plt.xlabel('Bins')
-        plt.ylabel('Density')
+        plt.xlabel("Bins")
+        plt.ylabel("Density")
         plt.legend(
-            ['Layer ' + str(i) for i in range(0, len(self.layer_attrs))]
+            ["Layer " + str(i) for i in range(0, len(self.layer_attrs))]
         )  # Updated reference from layer_attrs_start
         plt.show()
 
@@ -216,8 +216,8 @@ class VisualizeSentiment:
             np.arange(len(self.layer_attrs)), attr_sum, s=entropies * 100
         )  # Updated reference from layer_attrs_start
         plt.title(f"Entropies of {tokens_list[token_to_explain_index]} by layer")
-        plt.xlabel('Layers')
-        plt.ylabel('Total Attribution')
+        plt.xlabel("Layers")
+        plt.ylabel("Total Attribution")
         plt.show()
 
     def BertViz(self):
@@ -318,9 +318,9 @@ class VisualizeQAndA:
             yticklabels=yticklabels,
             linewidth=0.2,
         )
-        plt.xlabel('Tokens')
-        plt.ylabel('Layers')
-        plt.title('Token attribution scores by layer for start of answer')
+        plt.xlabel("Tokens")
+        plt.ylabel("Layers")
+        plt.title("Token attribution scores by layer for start of answer")
         plt.show()
 
         fig, ax = plt.subplots(figsize=(15, 5))
@@ -332,9 +332,9 @@ class VisualizeQAndA:
             yticklabels=yticklabels,
             linewidth=0.2,
         )  # , annot=True
-        plt.xlabel('Tokens')
-        plt.ylabel('Layers')
-        plt.title('Token attribution scores by layer for end of answer')
+        plt.xlabel("Tokens")
+        plt.ylabel("Layers")
+        plt.title("Token attribution scores by layer for end of answer")
         plt.show()
 
     def lc_visualize_token_boxes(self, token_to_explain: str = None):
@@ -354,15 +354,15 @@ class VisualizeQAndA:
         plt.title(
             f"Attribution scores of {tokens_list[token_to_explain_index]} for start of answer"
         )
-        plt.xlabel('Layers')
-        plt.ylabel('Attribution')
+        plt.xlabel("Layers")
+        plt.ylabel("Attribution")
         plt.show()
 
         fig, ax = plt.subplots(figsize=(20, 10))
         ax = sns.boxplot(data=self.layer_attrs_end_dist)
         plt.title(f"Attribution scores of {tokens_list[token_to_explain_index]} for end of answer")
-        plt.xlabel('Layers')
-        plt.ylabel('Attribution')
+        plt.xlabel("Layers")
+        plt.ylabel("Attribution")
         plt.show()
 
     def lc_visualize_token_pdfs(self, token_to_explain: str = None):
@@ -397,9 +397,9 @@ class VisualizeQAndA:
         plt.title(
             f"Probability density function of {tokens_list[token_to_explain_index]} for end position"
         )
-        plt.xlabel('Bins')
-        plt.ylabel('Density')
-        plt.legend(['Layer ' + str(i) for i in range(0, len(self.layer_attrs_start))])
+        plt.xlabel("Bins")
+        plt.ylabel("Density")
+        plt.legend(["Layer " + str(i) for i in range(0, len(self.layer_attrs_start))])
         plt.show()
 
     def lc_visualize_token_entropies(self, token_to_explain: str = None):
@@ -440,8 +440,8 @@ class VisualizeQAndA:
 
         plt.scatter(np.arange(len(self.layer_attrs_start)), attr_sum, s=entropies * 100)
         plt.title(f"Entropies of {tokens_list[token_to_explain_index]} by layer for end position")
-        plt.xlabel('Layers')
-        plt.ylabel('Total Attribution')
+        plt.xlabel("Layers")
+        plt.ylabel("Total Attribution")
         plt.show()
 
     def BertViz(self):
@@ -520,9 +520,9 @@ class VisualizeMaskedLM:
             yticklabels=yticklabels,
             linewidth=0.2,
         )
-        plt.xlabel('Tokens')
-        plt.ylabel('Layers')
-        plt.title('Token attribution scores for sentiment prediction')
+        plt.xlabel("Tokens")
+        plt.ylabel("Layers")
+        plt.title("Token attribution scores for sentiment prediction")
         plt.show()
 
     def lc_visualize_token(self, token_to_explain: str = None):
@@ -539,8 +539,8 @@ class VisualizeMaskedLM:
         plt.title(
             f"Attribution scores of {tokens_list[token_to_explain_index]} for sentiment prediction"
         )
-        plt.xlabel('Layers')
-        plt.ylabel('Attribution')
+        plt.xlabel("Layers")
+        plt.ylabel("Attribution")
         plt.show()
 
         # Compute PDF for the attributions.
@@ -557,10 +557,10 @@ class VisualizeMaskedLM:
 
         fig, ax = plt.subplots(figsize=(20, 10))
         plt.plot(layer_attrs_pdf)
-        plt.xlabel('Bins')
-        plt.ylabel('Density')
+        plt.xlabel("Bins")
+        plt.ylabel("Density")
         plt.legend(
-            ['Layer ' + str(i) for i in range(0, len(self.layer_attrs))]
+            ["Layer " + str(i) for i in range(0, len(self.layer_attrs))]
         )  # Updated reference from layer_attrs_start
         plt.show()
 
@@ -574,8 +574,8 @@ class VisualizeMaskedLM:
         plt.scatter(
             np.arange(len(self.layer_attrs)), attr_sum, s=entropies * 100
         )  # Updated reference from layer_attrs_start
-        plt.xlabel('Layers')
-        plt.ylabel('Total Attribution')
+        plt.xlabel("Layers")
+        plt.ylabel("Total Attribution")
         plt.show()
 
 

@@ -5,7 +5,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 class PreprocessSentiment:
-    labels = ['negative', 'positive']
+    labels = ["negative", "positive"]
 
     def __init__(self, model_path: str):
         self.tokenizer = DistilBertTokenizer.from_pretrained(model_path)
@@ -131,12 +131,12 @@ class PreprocessMaskedLM:
 
         if masked_substring in unmasked_context:
             self.masked_context = unmasked_context.replace(
-                masked_substring, '[MASK]', 1
+                masked_substring, "[MASK]", 1
             )  # only replace the first instance for those which occur multiple times
             # self.unmasked_context = unmasked_context
 
             context_list = self.tokenizer.tokenize(self.masked_context)
-            self.mask_index = context_list.index('[MASK]')
+            self.mask_index = context_list.index("[MASK]")
 
             ground_truth_list = self.tokenizer.tokenize(masked_substring)
             if len(ground_truth_list) > 1:
@@ -149,10 +149,10 @@ class PreprocessMaskedLM:
                 self.ground_truth, add_special_tokens=False
             )[0]
 
-            print('Unmasked context: ', unmasked_context)
+            print("Unmasked context: ", unmasked_context)
 
         else:
-            print('This choice is not in the context.')
+            print("This choice is not in the context.")
 
         # tokenize inputs (question + context, with special tokens)
         context_ids = self.tokenizer.encode(self.masked_context, add_special_tokens=False)

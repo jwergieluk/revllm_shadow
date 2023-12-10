@@ -26,5 +26,5 @@ def hello():
     click.echo(output_text)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()

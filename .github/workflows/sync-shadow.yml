@@ -29,7 +29,7 @@ jobs:
       run: |
         rm -fr "target_repo/*"
         cp -R source_repo/* target_repo/
-        cp .gitignore target_repo/
+        cp source_repo/.gitignore target_repo/
 
     - name: Commit and Push to Repository B
       run: |

@@ -49,9 +49,9 @@ class AnalyzeSentiment:
             predicted_classes = torch.argmax(probs, dim=-1).tolist()
             predictions = [self.preprocessor.labels[p] for p in predicted_classes]
 
-            print('        Context: ', self.preprocessor.context)
-            print('Predicted Answer: ', predictions[0])
-            print('   Actual Answer: ', self.preprocessor.ground_truth)
+            print("        Context: ", self.preprocessor.context)
+            print("Predicted Answer: ", predictions[0])
+            print("   Actual Answer: ", self.preprocessor.ground_truth)
 
         # for use in lig.attribute below, which need these args to be passed in
         else:
@@ -91,7 +91,7 @@ class AnalyzeSentiment:
             delta,
         )
 
-        print('\033[1m', 'Visualizations For Sentiment Prediction', '\033[0m')
+        print("\033[1m", "Visualizations For Sentiment Prediction", "\033[0m")
         viz.visualize_text([sentiment_vis])
 
     def lig_top_k_tokens(self, k: int = 5) -> None:
@@ -113,7 +113,7 @@ class AnalyzeSentiment:
 
         df = pd.DataFrame(
             {
-                'Word(Index), Attribution': [
+                "Word(Index), Attribution": [
                     "{} ({}), {}".format(word, pos, round(val.item(), 2))
                     for word, pos, val in zip(top_words, top_word_ind, top_words_val)
                 ]
@@ -122,7 +122,7 @@ class AnalyzeSentiment:
         df.style.set_properties(cell_ids=False)
 
         full_token_list = [
-            '{}({})'.format(token, str(i)) for i, token in enumerate(self.preprocessor.all_tokens)
+            "{}({})".format(token, str(i)) for i, token in enumerate(self.preprocessor.all_tokens)
         ]
 
         print(f"Full token list: {full_token_list}")
@@ -150,16 +150,16 @@ class AnalyzeQAndA:
             self.start_scores = output.start_logits
             self.end_scores = output.end_logits
 
-            print('        Question: ', self.preprocessor.question)
+            print("        Question: ", self.preprocessor.question)
             print(
-                'Predicted Answer: ',
-                ' '.join(
+                "Predicted Answer: ",
+                " ".join(
                     self.preprocessor.all_tokens[
                         torch.argmax(self.start_scores) : torch.argmax(self.end_scores) + 1
                     ]
                 ),
             )
-            print('   Actual Answer: ', self.preprocessor.ground_truth)
+            print("   Actual Answer: ", self.preprocessor.ground_truth)
 
         # for use in lig.attribute below, which need these args to be passed in
         else:
@@ -214,10 +214,10 @@ class AnalyzeQAndA:
             delta_end,
         )
 
-        print('\033[1m', 'Visualizations For Start Position', '\033[0m')
+        print("\033[1m", "Visualizations For Start Position", "\033[0m")
         viz.visualize_text([start_position_vis])
 
-        print('\033[1m', 'Visualizations For End Position', '\033[0m')
+        print("\033[1m", "Visualizations For End Position", "\033[0m")
         viz.visualize_text([end_position_vis])
 
     def lig_top_k_tokens(self, k: int = 5) -> None:
@@ -248,7 +248,7 @@ class AnalyzeQAndA:
 
         df_start = pd.DataFrame(
             {
-                'Word(Index), Attribution': [
+                "Word(Index), Attribution": [
                     "{} ({}), {}".format(word, pos, round(val.item(), 2))
                     for word, pos, val in zip(
                         top_words_start, top_word_ind_start, top_words_val_start
@@ -260,7 +260,7 @@ class AnalyzeQAndA:
 
         df_end = pd.DataFrame(
             {
-                'Word(Index), Attribution': [
+                "Word(Index), Attribution": [
                     "{} ({}), {}".format(word, pos, round(val.item(), 2))
                     for word, pos, val in zip(top_words_end, top_words_ind_end, top_words_val_end)
                 ]
@@ -269,7 +269,7 @@ class AnalyzeQAndA:
         df_end.style.set_properties(cell_ids=False)
 
         full_token_list = [
-            '{}({})'.format(token, str(i)) for i, token in enumerate(self.preprocessor.all_tokens)
+            "{}({})".format(token, str(i)) for i, token in enumerate(self.preprocessor.all_tokens)
         ]
 
         print(f"Full token list: {full_token_list}")
@@ -297,9 +297,9 @@ class AnalyzeMaskedLM:
             mask_prediction_id = predictions[0][self.preprocessor.mask_index]
             mask_prediction = self.preprocessor.tokenizer.convert_ids_to_tokens(mask_prediction_id)
 
-            print('         Context: ', self.preprocessor.masked_context)
-            print('    Ground truth: ', self.preprocessor.ground_truth)
-            print('Predicted answer: ', mask_prediction)
+            print("         Context: ", self.preprocessor.masked_context)
+            print("    Ground truth: ", self.preprocessor.ground_truth)
+            print("Predicted answer: ", mask_prediction)
 
         # for use in lig.attribute below, which need these args to be passed in
         else:
@@ -341,7 +341,7 @@ class AnalyzeMaskedLM:
             delta,
         )
 
-        print('\033[1m', 'Visualizations For Sentiment Prediction', '\033[0m')
+        print("\033[1m", "Visualizations For Sentiment Prediction", "\033[0m")
         viz.visualize_text([sentiment_vis])
 
     def lig_top_k_tokens(self, k: int = 5) -> None:
@@ -363,7 +363,7 @@ class AnalyzeMaskedLM:
 
         df = pd.DataFrame(
             {
-                'Word(Index), Attribution': [
+                "Word(Index), Attribution": [
                     "{} ({}), {}".format(word, pos, round(val.item(), 2))
                     for word, pos, val in zip(top_words, top_word_ind, top_words_val)
                 ]
@@ -372,7 +372,7 @@ class AnalyzeMaskedLM:
         df.style.set_properties(cell_ids=False)
 
         full_token_list = [
-            '{}({})'.format(token, str(i)) for i, token in enumerate(self.preprocessor.all_tokens)
+            "{}({})".format(token, str(i)) for i, token in enumerate(self.preprocessor.all_tokens)
         ]
 
         print(f"Full token list: {full_token_list}")

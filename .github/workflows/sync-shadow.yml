@@ -15,12 +15,14 @@ jobs:
       with:
         repository: 'lolm-gmbh/revllm_shadow'
         path: 'source_repo'
+        branch: 'main'
 
     - name: Checkout Target Repository
       uses: actions/checkout@v3
       with:
         repository: 'jwergieluk/revllm_new'
         path: 'target_repo'
+        branch: 'main'
         token: ${{ secrets.REVLLM_ACCESS_TOKEN }}
 
     - name: Sync Changes

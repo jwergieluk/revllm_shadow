@@ -19,9 +19,9 @@ jobs:
     - name: Checkout Target Repository
       uses: actions/checkout@v3
       with:
-        repository: 'jwergieluk/revllm_test'
+        repository: 'jwergieluk/revllm_new'
         path: 'target_repo'
-        token: ${{ secrets.REPO_B_ACCESS_TOKEN }}
+        token: ${{ secrets.REVLLM_ACCESS_TOKEN }}
 
     - name: Sync Changes
       run: |
@@ -31,7 +31,7 @@ jobs:
 
     - name: Commit and Push to Repository B
       run: |
-        cd repo-B
+        cd target_repo
         git config --local user.name "Julian Wergieluk"
         git config --local user.email "julian.wergieluk@gmail.com"
         git add .

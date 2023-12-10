@@ -37,5 +37,5 @@ jobs:
         git config --local user.name "Julian Wergieluk"
         git config --local user.email "julian.wergieluk@gmail.com"
         git add .
-        git commit -m "$(git -C ../repo-A log -1 --pretty=format:%s)"
+        git commit -m "$(git -C ../source_repo log -1 --pretty=format:%s)"
         git push

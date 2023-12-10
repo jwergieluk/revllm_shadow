@@ -1,0 +1,39 @@
+name: Sync Shadow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Repository
+      uses: actions/checkout@v3
+      with:
+        repository: 'lolm-gmbh/revllm_shadow'
+        path: 'source_repo'
+
+    - name: Checkout Target Repository
+      uses: actions/checkout@v3
+      with:
+        repository: 'jwergieluk/revllm_test'
+        path: 'target_repo'
+        token: ${{ secrets.REPO_B_ACCESS_TOKEN }}
+
+    - name: Sync Changes
+      run: |
+        rm -fr "target_repo/*"
+        cp -R source_repo/* target_repo/
+        cat source_repo/.shadowignore >> target_repo/.gitignore
+
+    - name: Commit and Push to Repository B
+      run: |
+        cd repo-B
+        git config --local user.name "Julian Wergieluk"
+        git config --local user.email "julian.wergieluk@gmail.com"
+        git add .
+        git commit -m "$(git -C ../repo-A log -1 --pretty=format:%s)"
+        git push

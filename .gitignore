@@ -157,4 +157,5 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.github/workflow/sync-shadow.yml
 .vscode

@@ -29,13 +29,13 @@ jobs:
       run: |
         rm -fr "target_repo/*"
         cp -R source_repo/* target_repo/
-        cat source_repo/.shadowignore >> target_repo/.gitignore
+        cp .gitignore target_repo/
 
     - name: Commit and Push to Repository B
       run: |
         cd target_repo
-        git config --local user.name "Julian Wergieluk"
-        git config --local user.email "julian.wergieluk@gmail.com"
+        git config --local user.name "jwergieluk"
+        git config --local user.email "297652+jwergieluk@users.noreply.github.com"
         git add .
         git commit -m "$(git -C ../source_repo log -1 --pretty=format:%s)"
         git push
